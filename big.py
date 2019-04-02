@@ -5,8 +5,7 @@ class BigNumber:
         try:
             float(num)
         except ValueError as e:
-	    raise Exception("Valor inválido recebido! {} tem caracteres não esperados. 
-                             Apenas números ou . esperados.\nErro:{}".format(num,e))
+            raise Exception("Valor inválido recebido! {} tem caracteres não esperados. Apenas números ou . esperados.\nErro:{}".format(num,e))
         except Exception as e:
             raise Exception("Exceção inesperada: {}".format(e))
     def __str__(self):
