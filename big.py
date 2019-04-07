@@ -18,7 +18,7 @@ class BigNumber:
     def __tam__(self):
         return self.tam
 
-def somar(a,b):
+def somar(a,b): #só funciona pra um caso, falta implementar o segundo de numero positivo e tratar os numeros negativos
     tam_a = a.__tam__();
     tam_b = b.__tam__();
     c = ''
