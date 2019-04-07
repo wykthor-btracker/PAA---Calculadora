@@ -26,8 +26,11 @@ def somar(a,b):
     if tam_a <= tam_b:
         while tam_a > 0:
             aux = int(a.num[tam_a-1]) + int(b.num[tam_b-1])
-            print(aux);
+            c+= str(aux)
             tam_a -= 1
+            tam_b -= 1
+        while tam_b > 0:
+            c = b.num[tam_b-1] + c[0:]
             tam_b -= 1
     return c
             
