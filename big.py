@@ -24,15 +24,12 @@ def somar(a,b):
     c = ''
     aux = int()
     if tam_a <= tam_b:
-        while tam_a > 0:
-            aux = int(a.num[tam_a-1]) + int(b.num[tam_b-1])
+        for i in reversed(range(tam_a)):
+            aux = int(a.num[i]) + int(b.num[tam_b-1])
             c = str(aux) + c[0:]
-            print(c)
-            tam_a -= 1
             tam_b -= 1
-        while tam_b > 0:
-            c = b.num[tam_b-1] + c[0:]
-            tam_b -= 1
+        for i in reversed(range(tam_b)):
+            c = b.num[i] + c[0:]
     return c
             
 
