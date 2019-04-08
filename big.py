@@ -80,8 +80,14 @@ class BigNumber:
         if len(self) < len(other):
             return True
         elif len(self) == len(other):
-            return self == other
-        
+            if self == other:
+                return True
+            else:
+                for index in range(len(self)):
+                    if self.num[index] < other.num[index]:
+                        return True
+                return False
+
 def main():
     x, y = 1230001, 1230000
     a, b = BigNumber(str(x)), BigNumber(str(y))
