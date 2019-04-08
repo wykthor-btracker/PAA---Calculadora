@@ -72,13 +72,38 @@ class BigNumber:
         indexListSmallest = list(reversed(range(cutOff)))
         indexTuples = [(indexListLargest[index], indexListSmallest[index]) for index in range(cutOff)]
         return indexTuples, longestNumber, shortestNumber
+    
+""" retorna 1 se A > B, -1 se A < B e 0 Se A = B"""
+def compare(self,other):
+	if self.__len__() > other.__len__():
+		return 1
+	elif self.__len__() < other.__len__():
+		return -1
+	else:
+		a = int(0)
+		b = int(0)
+		for i in range(self.__len__()):
+			if ord(self.num[i]) > ord(other.num[i]):
+				a += 1
+			elif ord(self.num[i]) == ord(other.num[i]):
+				a += 1
+				b += 1
+			else:
+				b += 1
+		if a > b:
+			return 1
+		elif b > a:
+			return -1
+		else:
+			return 0
 
 
 def main():
-    x, y = 1230000,25000000
+    x, y = 1230000,1230000
     a, b = BigNumber(str(x)),BigNumber(str(y))
     print("{} + {} = {}".format(a, b, a+b))
     print("{} + {} = {}".format(x, y, x+y))
+    print("{} é menor que {}? {}".format(a,b,compare(a,b)))
 
 
 if __name__ == "__main__":
