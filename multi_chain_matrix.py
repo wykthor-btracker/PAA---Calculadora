@@ -24,6 +24,7 @@ def lookup_chain(m, p, i, j):
 
 
 p = [50,20,1,10,100]
-#Dá o valor do menor número de operações
-#Falta dizer qual foi a ordem da multiplicação
-print(memoized_matrix_chain(p))
+
+
+print("minimum number of operations:", memoized_matrix_chain(p))
+#Next step: what was the order of the multiplication?
