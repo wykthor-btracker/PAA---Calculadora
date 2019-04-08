@@ -19,22 +19,21 @@ class BigNumber:
         return self.tam
 
 def exp_by_squaring(x, n):
-    if n.num < str(0):
+
+    if n < 0:
         return exp_by_squaring(1 / x, -n);
     elif n == 0:
         return  1;
     elif n == 1:
         return  x ;
-    elif n.num // 2 == 0:
+    elif n // 2 == 0:
         return exp_by_squaring(x * x,  n // 2);
-    elif n.num // 2 == 1:
+    elif n // 2 == 1:
         return x * exp_by_squaring(x * x, (n - 1) // 2);
 
 def main():
-    linha = input('')
-    a = BigNumber(linha)
-    linha = input('')
-    b = BigNumber(linha)
+    a = int(input(''))
+    b = int(input(''))
     print(exp_by_squaring(a,b))
 	
 if __name__ == "__main__":
