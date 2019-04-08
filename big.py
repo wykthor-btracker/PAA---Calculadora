@@ -5,12 +5,12 @@ class BigNumber:
     def __init__(self, num):
         self.num = num
         self.tam = len(num)
-        assert(isinstance(num,str))
+        assert (isinstance(num, str))
         try:
             float(num)
         except ValueError as e:
             raise Exception("Valor inválido recebido! {} tem caracteres não esperados. Apenas números ou . esperados.\n"
-                            "Erro:{}".format(num,e))
+                            "Erro:{}".format(num, e))
         except Exception as e:
             raise Exception("Exceção inesperada: {}".format(e))
 
@@ -26,7 +26,7 @@ class BigNumber:
     def __len__(self):
         return len(self.num)
 
-    def __add__(self,other):
+    def __add__(self, other):
         if not isinstance(other, type(self)):
             raise Exception("Adição mal feita, esperava um objeto do tipo {}, tipo {} recebido".format(BigNumber,
                                                                                                        type(other)))
@@ -72,38 +72,22 @@ class BigNumber:
         indexListSmallest = list(reversed(range(cutOff)))
         indexTuples = [(indexListLargest[index], indexListSmallest[index]) for index in range(cutOff)]
         return indexTuples, longestNumber, shortestNumber
-    
-""" retorna 1 se A > B, -1 se A < B e 0 Se A = B"""
-def compare(self,other):
-	if self.__len__() > other.__len__():
-		return 1
-	elif self.__len__() < other.__len__():
-		return -1
-	else:
-		a = int(0)
-		b = int(0)
-		for i in range(self.__len__()):
-			if ord(self.num[i]) > ord(other.num[i]):
-				a += 1
-			elif ord(self.num[i]) == ord(other.num[i]):
-				a += 1
-				b += 1
-			else:
-				b += 1
-		if a > b:
-			return 1
-		elif b > a:
-			return -1
-		else:
-			return 0
 
+    def __eq__(self,other):
+        return self.num == other.num
 
+    def __lt__(self, other):
+        if len(self) < len(other):
+            return True
+        elif len(self) == len(other):
+            return self == other
+        
 def main():
-    x, y = 1230000,1230000
-    a, b = BigNumber(str(x)),BigNumber(str(y))
-    print("{} + {} = {}".format(a, b, a+b))
-    print("{} + {} = {}".format(x, y, x+y))
-    print("{} é menor que {}? {}".format(a,b,compare(a,b)))
+    x, y = 1230001, 1230000
+    a, b = BigNumber(str(x)), BigNumber(str(y))
+    print("{} + {} = {}".format(a, b, a + b))
+    print("{} + {} = {}".format(x, y, x + y))
+    print("{} é menor que {}? {}".format(a, b, compare(a, b)))
 
 
 if __name__ == "__main__":
