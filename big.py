@@ -11,6 +11,9 @@ class BigNumber:
         except Exception as e:
             raise Exception("Exceção inesperada: {}".format(e))
 
+    def __int__(self):
+        return int(self.num)
+
     def __str__(self):
         return self.num
 
