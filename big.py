@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 class BigNumber:
     def __init__(self, num):
         self.num = num
