@@ -30,17 +30,24 @@ class BigNumber:
         if not isinstance(other, type(self)):
             raise Exception("Adição mal feita, esperava um objeto do tipo {}, tipo {} recebido".format(BigNumber,
                                                                                                        type(other)))
+        res = self.performAddition(other)
+        return BigNumber(res)
+
+    def __mul__(self, other):
+
+        """Multiplica um BigNumber pelo outro"""
+
+        return BigNumber(str(self.recursiveMult(self,other)))
+
+    def performAddition(self, other):
         maior = lambda values: reduce(lambda bigNumA, bigNumB: bigNumA if len(bigNumA) >= len(bigNumB) else bigNumB,
                                       values)
         menor = lambda values: reduce(lambda bigNumA, bigNumB: bigNumA if len(bigNumA) < len(bigNumB) else bigNumB,
                                       values)
-
         indexTuples, longestNumber, shortestNumber = self._initSum(maior, menor, other)
-
         res = self._SumSubsets(indexTuples, longestNumber, shortestNumber)
-
         end = self._JoinSumWithLeftover(longestNumber, res)
-        return BigNumber(end)
+        return end
 
     @staticmethod
     def _JoinSumWithLeftover(longestNumber, res):
@@ -89,12 +96,63 @@ class BigNumber:
                     elif self.num[index] > other.num[index]:
                         return False
 
+    @staticmethod
+    def _zeroPad(numberString, zeros, left=True):
+
+        """Return the string with zeros added to the left or right."""
+
+        for i in range(zeros):
+
+            if left:
+
+                numberString = '0' + numberString
+
+            else:
+
+                numberString = numberString + '0'
+
+        return numberString
+
+    def recursiveMult(self, x, y):
+        x, y = str(x), str(y)
+        # base case for recursion
+        if len(x) == 1 and len(y) == 1:
+            return int(x) * int(y)
+
+        if len(x) < len(y):
+
+            x = self._zeroPad(x, len(y) - len(x))
+
+        elif len(y) < len(x):
+
+            y = self._zeroPad(y, len(x) - len(y))
+        n = len(x)
+        j = n // 2
+        # for odd digit integers
+        if (n % 2) != 0:
+            j += 1
+        BZeroPadding = n - j
+        AZeroPadding = BZeroPadding * 2
+        a = int(x[:j])
+        b = int(x[j:])
+        c = int(y[:j])
+        d = int(y[j:])
+        # recursively calculate
+        ac = self.recursiveMult(a, c)
+        bd = self.recursiveMult(b, d)
+        k = self.recursiveMult(a + b, c + d)
+        A = int(self._zeroPad(str(ac), AZeroPadding, False))
+        B = int(self._zeroPad(str(k - ac - bd), BZeroPadding, False))
+        return A + B + bd
+
+
 def main():
-    x, y = 1234, 1235
+    x, y = 521515, 51252125
     a, b = BigNumber(str(x)), BigNumber(str(y))
-    print("{} + {} = {}".format(a, b, a + b))
-    print("{} + {} = {}".format(x, y, x + y))
-    print("{} é menor que {}? {}".format(a, b, a<b))
+    print("a = {} b = {}")
+    print("minha soma {}\nsoma python {}".format(a+b,x+y))
+    print("{} é igual a {}? {}".format(a, b, a==b))
+    print("minha mult {}\nmult python {}".format(a*b,x*y))
 
 
 if __name__ == "__main__":
