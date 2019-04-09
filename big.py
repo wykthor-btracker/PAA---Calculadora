@@ -18,23 +18,44 @@ class BigNumber:
     def __tam__(self):
         return self.tam
 
-def exp_by_squaring(x, n):
+def exp(x, n):
 
     if n < 0:
-        return exp_by_squaring(1 / x, -n);
+        return exp(1 / x, -n);
     elif n == 0:
         return  1;
     elif n == 1:
         return  x ;
     elif n // 2 == 0:
-        return exp_by_squaring(x * x,  n // 2);
+        return exp(x * x,  n // 2);
     elif n // 2 == 1:
-        return x * exp_by_squaring(x * x, (n - 1) // 2);
+        return x * exp(x * x, (n - 1) // 2);
+def root(x, n): 
+
+    x = float(x) 
+    n = int(n) 
+    if (x >= 0 and x <= 1): 
+        menor = x 
+        maior = 1
+    else: 
+        menor = 1
+        maior = x 
+             
+    e = 0.00000001 
+    chute = (menor + maior) / 2
+    while abs(chute ** n - x) >= e: 
+        if chute ** n > x: 
+            maior = chute 
+        else: 
+            menor = chute
+        chute = (menor + maior) / 2
+    return chute 
 
 def main():
     a = int(input(''))
     b = int(input(''))
-    print(exp_by_squaring(a,b))
+    print(exp(a,b))
+    print(root(a,b))
 	
 if __name__ == "__main__":
 	main()
