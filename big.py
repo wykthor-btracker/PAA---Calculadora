@@ -144,6 +144,26 @@ class BigNumber:
         A = int(self._zeroPad(str(ac), AZeroPadding, False))
         B = int(self._zeroPad(str(k - ac - bd), BZeroPadding, False))
         return A + B + bd
+    def root(x, n): 
+
+    x = float(x) 
+    n = int(n) 
+    if (x >= 0 and x <= 1): 
+        menor = x 
+        maior = 1
+    else: 
+        menor = 1
+        maior = x 
+             
+    e = 0.00000001 
+    chute = (menor + maior) / 2
+    while abs(chute ** n - x) >= e: 
+        if chute ** n > x: 
+            maior = chute 
+        else: 
+            menor = chute
+        chute = (menor + maior) / 2
+    return chute
 
 
 def main():
