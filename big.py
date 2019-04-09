@@ -81,19 +81,20 @@ class BigNumber:
             return True
         elif len(self) == len(other):
             if self == other:
-                return True
+                return False
             else:
                 for index in range(len(self)):
                     if self.num[index] < other.num[index]:
                         return True
-                return False
+                    elif self.num[index] > other.num[index]:
+                        return False
 
 def main():
-    x, y = 1230001, 1230000
+    x, y = 1234, 1235
     a, b = BigNumber(str(x)), BigNumber(str(y))
     print("{} + {} = {}".format(a, b, a + b))
     print("{} + {} = {}".format(x, y, x + y))
-    print("{} é menor que {}? {}".format(a, b, compare(a, b)))
+    print("{} é menor que {}? {}".format(a, b, a<b))
 
 
 if __name__ == "__main__":
