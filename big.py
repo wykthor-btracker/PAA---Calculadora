@@ -147,23 +147,23 @@ class BigNumber:
     
     def root(x, n): 
 
-    x = float(x) 
-    n = int(n) 
-    if (x >= 0 and x <= 1): 
-        menor = x 
-        maior = 1
-    else: 
-        menor = 1
-        maior = x         
-    e = 0.00000001 
-    chute = (menor + maior) / 2
-    while abs(chute ** n - x) >= e: 
-        if chute ** n > x: 
-            maior = chute 
+        x = float(x) 
+        n = int(n) 
+        if (x >= 0 and x <= 1): 
+            menor = x 
+            maior = 1
         else: 
-            menor = chute
+            menor = 1
+            maior = x         
+        e = 0.00000001 
         chute = (menor + maior) / 2
-    return chute
+        while abs(chute ** n - x) >= e: 
+            if chute ** n > x: 
+                maior = chute 
+            else: 
+                menor = chute
+            chute = (menor + maior) / 2
+        return chute
 
 def exp(x, n):
     if n == 1:
