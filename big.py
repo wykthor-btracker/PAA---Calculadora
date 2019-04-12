@@ -282,9 +282,9 @@ def get_optimal_order(s, i, j):
 def main():
     x, y = 521515, 51252125
     a, b = BigNumber(str(x)), BigNumber(str(y))
-    print("a = {} b = {}")
+    #print("a = {} b = {}")
     print("minha soma {}\nsoma python {}".format(a+b,x+y))
-    print("{} é igual a {}? {}".format(a, b, a==b))
+    #print("{} é igual a {}? {}".format(a, b, a==b))
     print("minha mult {}\nmult python {}".format(a*b,x*y))
 
     #Numeros para subtraçao#
