@@ -15,3 +15,4 @@ Exception: Tipo de <class 'int'> inválido, <class 'str'> esperado
 A funcionalidade retornará um valor do tipo equivalente à operação, retornando um valor inteiro quando possível, e um float quando necessário.
 
 Nas funcionalidades que necessitam de BigNumber, utilizar-se-á instâncias da classe BigNumber, 
+Não foi possível fazer uma interface para o projeto. No arquivo Big estão as funciconalidades: soma, subtração e multiplicação de bigNumbers. E por fim a cadeia de multiplicação de matrizes, que dá a melhor sequência para multiplicar várias matrizes com menor número de operações. 
